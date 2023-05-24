@@ -1,14 +1,16 @@
-from machine import Pin
-import utime
+# circuitpython demo
+import time
+import digitalio
+import board
 
-relay1 = Pin(6, Pin.OUT)  #set pin GP6 as output
-relay2 = Pin(7, Pin.OUT)  #set pin GP7 as output
-
-
+relay1 = digitalio.DigitalInOut(board.GP6)
+relay1.direction = digitalio.Direction.OUTPUT
+relay2 = digitalio.DigitalInOut(board.GP7)
+relay2.direction = digitalio.Direction.OUTPUT
 while True:
-    relay1(1)  # Turn on Relay1
-    relay2(1)  # Turn on Relay2
-    utime.sleep(0.5)
-    relay1(0)  # Turn off Relay1
-    relay2(0)  # Turn off Relay2
-    utime.sleep(0.5)
+    relay1.value = True
+    relay2.value = True
+    time.sleep(0.5)
+    relay1.value = False
+    relay2.value = False
+    time.sleep(0.5)
